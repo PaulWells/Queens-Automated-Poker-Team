@@ -1,0 +1,207 @@
+MATCHSTATE:0:0:r:TdAs|
+position: 0
+handNum: 0
+betLog: r:
+roundNum: 1
+raise to call ratio: 1.0
+Number of Opponent Raises in Round: 0 1
+Number of Opponent Raises in Round: 1 0
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+pot odds: 0.4
+checkRaise: false
+
+
+MATCHSTATE:0:0:rrc/:TdAs|/2c8c3h
+position: 0
+handNum: 0
+betLog: rrc/:
+roundNum: 2
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+
+MATCHSTATE:0:0:rrc/rc/:TdAs|/2c8c3h/9c
+position: 0
+handNum: 0
+betLog: rrc/rc/:
+roundNum: 3
+raise to call ratio: 0.33333334
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+
+MATCHSTATE:0:0:rrc/rc/cr:TdAs|/2c8c3h/9c
+position: 0
+handNum: 0
+betLog: rrc/rc/cr:
+roundNum: 3
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 1
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.11764706
+checkRaise: false
+
+
+MATCHSTATE:0:0:rrc/rc/crc/:TdAs|/2c8c3h/9c/Kh
+position: 0
+handNum: 0
+betLog: rrc/rc/crc/:
+roundNum: 4
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 1
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+
+MATCHSTATE:0:0:rrc/rc/crc/cr:TdAs|/2c8c3h/9c/Kh
+position: 0
+handNum: 0
+betLog: rrc/rc/crc/cr:
+roundNum: 4
+raise to call ratio: 0.6
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 1
+Number of Opponent Raises in Round: 4 1
+pot odds: 0.0952381
+checkRaise: false
+
+
+MATCHSTATE:1:1::|Qd7c
+position: 1
+handNum: 1
+betLog: :
+roundNum: 1
+raise to call ratio: -1.0
+Number of Opponent Raises in Round: 1 0
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+
+MATCHSTATE:1:1:rr:|Qd7c
+position: 1
+handNum: 1
+betLog: rr:
+roundNum: 1
+raise to call ratio: 1.0
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.22222222
+checkRaise: false
+
+
+MATCHSTATE:1:1:rrc/r:|Qd7c/2h8h5c
+position: 1
+handNum: 1
+betLog: rrc/r:
+roundNum: 2
+raise to call ratio: 1.0
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 1
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.15384616
+checkRaise: false
+
+
+MATCHSTATE:1:1:rrc/rc/r:|Qd7c/2h8h5c/Th
+position: 1
+handNum: 1
+betLog: rrc/rc/r:
+roundNum: 3
+raise to call ratio: 1.0
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 1
+Number of Opponent Raises in Round: 3 1
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.11764706
+checkRaise: false
+
+
+MATCHSTATE:0:2::9d7s|
+position: 0
+handNum: 2
+betLog: :
+roundNum: 1
+raise to call ratio: -1.0
+Number of Opponent Raises in Round: 1 0
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+
+MATCHSTATE:0:2:r:9d7s|
+position: 0
+handNum: 2
+betLog: r:
+roundNum: 1
+raise to call ratio: 1.0
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.4
+checkRaise: false
+
+
+MATCHSTATE:0:2:rc/cc/:9d7s|/5d2cJc/3d
+position: 0
+handNum: 2
+betLog: rc/cc/:
+roundNum: 3
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false
+
+MATCHSTATE:0:2:crr:9d7s|/5d2cJc/3d
+position: 0
+handNum: 2
+betLog: crr:
+roundNum: 1
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.22222222
+checkRaise: true
+
+
+MATCHSTATE:0:2:crr/:9d7s|/5d2cJc/3d
+position: 0
+handNum: 2
+betLog: crr/:
+roundNum: 2
+raise to call ratio: 0.5
+Number of Opponent Raises in Round: 1 1
+Number of Opponent Raises in Round: 2 0
+Number of Opponent Raises in Round: 3 0
+Number of Opponent Raises in Round: 4 0
+pot odds: 0.0
+checkRaise: false

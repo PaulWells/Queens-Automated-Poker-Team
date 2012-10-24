@@ -1,0 +1,47 @@
+1) 'ignore comments', if the string starts with a '#' or a ';' the line is a comment
+	just check for this and continue
+
+2) checks that string is not empty
+	this one exits on a failure, it's a server/connection error if it happens
+
+3) checks game over
+	I think the server sends a string that starts "FINISHED at {time}" and it checks that,  but it seems to check this from inside the bot which is confusing
+	
+4) check that you are the current player
+	there is a function in game.c which returns the currentPlayer seat, you need to check whether you have that seat that is currently playing
+	your seat it gets sent from dealer.c at some point, hard to figure out when exactly, it might be the first message from the dealer
+
+RUN BOT
+
+5) assert bot produces a valid action with isValidAction from game.c
+
+int isValidAction( const Game *game, const State *curState,
+		   const int tryFixing, Action *action )
+{
+  int min, max, p;
+
+  if( stateFinished( curState ) || action->type == a_invalid ) {
+    return 0;
+  }
+
+  p = currentPlayer( game, curState );
+
+  if( action->type == a_raise ) {
+
+    if( !raiseIsValid( game, curState, &min, &max ) ) {
+      /* there are no valid raise sizes */
+
+      return 0;
+    }
+
+	
+6) print the action the bot takes (locally to a file with printAction from game.c
+
+7) make sure that the bot isn't printing a line that is to long for the server
+(this is done with some sort of 'PrintAction' function) (exit on failure)
+
+8) send information to server (with fwrite(line,1,len,toServer) != len)
+
+9) fflush (toServer) // clear the buffer
+
+
