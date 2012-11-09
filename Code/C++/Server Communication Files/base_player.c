@@ -36,7 +36,7 @@ int main( int argc, char **argv )
 
   /* we make some assumptions about the actions - check them here */
   assert( NUM_ACTION_TYPES == 3 );
-
+	
   if( argc < 4 ) {
 
     fprintf( stderr, "usage: player game server port\n" );

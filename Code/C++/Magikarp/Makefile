@@ -31,7 +31,5 @@ example_player: game.c game.h evalHandTables rng.c rng.h example_player.c net.c 
 base_player: game.c game.h evalHandTables rng.c rng.h base_player.c net.c net.h
 	$(CC) $(CFLAGS) -o $@ game.c rng.c base_player.c net.c
 
-magikarp: game.c game.h evalHandTables rng.c rng.h magikarp.c net.c net.h
+magikarp: game.c game.h evalHandTables rng.c rng.h base_player.c net.c net.h magikarp.h
 	$(CC) $(CFLAGS) -o $@ game.c rng.c magikarp.c net.c
-
-

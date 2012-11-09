@@ -20,17 +20,14 @@ Copyright (C) 2011 by the Computer Poker Research Group, University of Alberta
 
 int main( int argc, char **argv )
 {
-  int sock, len, r, a;
-  int32_t min, max;
+  int sock, len, r;
   uint16_t port;
-  double p;
   Game *game;
   MatchState state;
   Action action;
   FILE *file, *toServer, *fromServer;
   struct timeval tv;
   double probs[ NUM_ACTION_TYPES ];
-  double actionProbs[ NUM_ACTION_TYPES ];
   rng_state_t rng;
   char line[ MAX_LINE_LEN ];
 

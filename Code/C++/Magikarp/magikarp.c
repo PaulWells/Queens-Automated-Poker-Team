@@ -16,21 +16,19 @@ Copyright (C) 2011 by the Computer Poker Research Group, University of Alberta
 #include "game.h"
 #include "rng.h"
 #include "net.h"
+//#include "magikarp.h"
 
 
 int main( int argc, char **argv )
 {
-  int sock, len, r, a;
-  int32_t min, max;
+  int sock, len, r;
   uint16_t port;
-  double p;
   Game *game;
   MatchState state;
   Action action;
   FILE *file, *toServer, *fromServer;
   struct timeval tv;
   double probs[ NUM_ACTION_TYPES ];
-  double actionProbs[ NUM_ACTION_TYPES ];
   rng_state_t rng;
   char line[ MAX_LINE_LEN ];
 
@@ -132,7 +130,7 @@ int main( int argc, char **argv )
 	  
 	  
 	//////////////////////////////////////////////////////////////
-	action.type = a_call;
+	action.type = a_call;//decision("string");//a_call;
 	action.size = 0;
 
     /* do the action! */
