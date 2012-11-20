@@ -10,22 +10,19 @@ import java.net.*;
 public class TCP_LOOP {
 	
 		public static void main(String args[]) throws IOException,SocketException{
-//			 String serverAddress;
+
 			 int PORT = 48777;
 			 PrintWriter outStream = null;
 			 BufferedReader inStream = null;
 			 Socket socket = null;
 			 String input = null;
-//			PrintWriter textStream;	
+
 			
 			if(args.length > 1)
 			{
 				PORT = Integer.parseInt(args[1]);
 			}
 			
-			// load hand ranker into memory
-			//HandEvaluator.loadHandRanks();
-			//MatchState.buildHashMap();
 			
 			// TCP set-up
 	
@@ -55,6 +52,7 @@ public class TCP_LOOP {
 						outStream.flush();
 				}
 			}
+			
 			inStream.close();
 			outStream.close();
 			socket.close();

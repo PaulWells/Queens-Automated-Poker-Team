@@ -6,6 +6,7 @@ import java.util.*;
  */
 
 public class matchState {
+	private String handString;
 	private boolean ourTurn;
 	private boolean endHand;
 	private int roundNum;
@@ -58,10 +59,15 @@ public class matchState {
 	}
 	
 	
+	
 	//removes "MATCHSTATE:" label at beginning of betString
 	private void prepareString(){
 		betString = betString.substring("MATCHSTATE:".length(), betString.length());
 		return;
+	}
+	
+	private void setHand(){
+		handString = betString.substring(betString.indexOf("|")+1,betString.indexOf("|")+5);	
 	}
 	
 	private void setOurTurn(){
@@ -396,6 +402,7 @@ public class matchState {
 		System.out.println(betString);
 		prepareString();
 		setOurTurn();
+		setHand();
 		setPosition();
 		System.out.println("position: " + position);
 		setHandNum();
@@ -412,6 +419,7 @@ public class matchState {
 		System.out.println("pot odds: " + potOdds);
 		System.out.println("checkRaise: " + checkRaise);
 		System.out.println("Our Turn?:" + ourTurn);
+		System.out.println("Hand String: " + handString);
 		
 	}
 	
@@ -422,7 +430,7 @@ public class matchState {
 
 
 	public static void main (String[] args) { 
-		String sample = "MATCHSTATE:1:0:cc/:|9hQd/8dAs8s";
+		String sample = "MATCHSTATE:0:0:cc/rcr:|9hQd/8dAs8s";
 		
 		matchState test = new matchState();
 		test.updateState(sample);
