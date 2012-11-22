@@ -24,6 +24,11 @@ public class matchState {
 	private int betAmount = 10;	//the fixed raise amount
 	private int[] oppRaiseArray = new int[4];  //holds the number of raises from each round
 	private boolean checkRaise;
+	private char opponentLastDecision;
+	
+	public char getOpponentLastDecision(){
+		return opponentLastDecision;
+	}
 	
 	public int getRoundNum(){
 		return roundNum;
@@ -62,6 +67,7 @@ public class matchState {
 	
 	//removes "MATCHSTATE:" label at beginning of betString
 	private void prepareString(){
+		System.out.println(betString);
 		betString = betString.substring("MATCHSTATE:".length(), betString.length());
 		return;
 	}
@@ -280,7 +286,6 @@ public class matchState {
 		int n = 2;//counts round 
 		//next three rounds if there is any data yet
 		while(matchLog.length()>0 && matchLog.charAt(0)!= ':'){
-			System.out.println("inWhile");
 			//find betting string for next round and remove it but leave in semicolon if it is the last round
 			if(matchLog.indexOf('/') == -1){
 				roundString = matchLog.substring(0, matchLog.indexOf(':'));
