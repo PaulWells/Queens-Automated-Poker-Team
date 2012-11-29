@@ -46,6 +46,14 @@ public class Tentacool {
 		//double handRank=parser.getHandRank(); 
 		double handRank=0.5;
 		double[] opponentRaise=parser.getOppRaiseArray();
+		double preflopRank;
+		
+		String hand;
+		hand = "" + input.charAt(0) + input.charAt(2);
+		if(input.charAt(1) == input.charAt(3))
+			hand += "s";
+		else
+			hand+= "o";
 		
 		double raiseNum=0; 
 		
@@ -56,9 +64,29 @@ public class Tentacool {
 		
 		//pre-flop code
 		if(roundNum==0){
+			preflopRank=preFlopPotential.potential(hand);
+			preflopRank=(169-preflopRank)/169;
+			raiseNum=opponentRaise[0];
+			if(opponentCheckRaise==true){ //checks whether the opponent has check raised this round
+				a+=(raiseNum+1)*raiseconstA;
+				b+=(raiseNum+1)*raiseconstA;
+			}
+			else{
+				a+=raiseNum*raiseconstA;
+				b+=raiseNum*raiseconstA;
+			}
+			if(a>aMax)
+				a=aMax;
+			if(b>bMax)
+				b=bMax;
+				
+			if(preflopRank<=a)
+				decision='f';
+			else if(preflopRank<=b)
+				decision='c';
+			else
+				decision='r';
 			
-			decision='c'; //bot calls on pre-flop no matter what
-			//to implement: Stosh's pre-flop table
 		}
 		//post-flop code
 		else{
