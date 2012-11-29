@@ -24,10 +24,14 @@ public class matchState {
 	private int betAmount = 10;	//the fixed raise amount
 	private int[] oppRaiseArray = new int[4];  //holds the number of raises from each round
 	private boolean checkRaise;
-	private char opponentLastDecision;
+	//private char opponentLastDecision;
 	
-	public char getOpponentLastDecision(){
+	/*public char getOpponentLastDecision(){
 		return opponentLastDecision;
+	}*/
+	
+	public int[] getOppRaiseArray(){
+		return oppRaiseArray.clone();
 	}
 	
 	public int getRoundNum(){
