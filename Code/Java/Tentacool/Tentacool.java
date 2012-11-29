@@ -7,6 +7,7 @@
  * adjusted based on the number of opponent bot raises (weighted more heavily for recent rounds) and
  * check raises. The bot only checks/ calls on the pre-flop.
  * 
+ * THIS VERSION USES 0.5 FOR ALL HAND RANK TO SEE IF IT WORKS
  * 
  */
 
@@ -36,13 +37,14 @@ public class Tentacool {
 		double b = 0.8;
 		double aMax = 0.80;
 		double bMax = 0.97;
-		double raiseconstA=0.05;
-		double raiseconstB=0.1;
+		double raiseconstA=0.2;//0.1
+		double raiseconstB=0.15;//0.05
 		
 		//char opponentDecision=parser.getOpponentLastDecision(); //last decision by opponent (n,f,c,r)
 		boolean opponentCheckRaise=parser.getCheckRaise(); 
 		int roundNum=parser.getRoundNum();
-		double handRank=parser.getHandRank(); 
+		//double handRank=parser.getHandRank(); 
+		double handRank=0.5;
 		double[] opponentRaise=parser.getOppRaiseArray();
 		
 		double raiseNum=0; 
@@ -54,6 +56,7 @@ public class Tentacool {
 		
 		//pre-flop code
 		if(roundNum==0){
+			
 			decision='c'; //bot calls on pre-flop no matter what
 			//to implement: Stosh's pre-flop table
 		}
