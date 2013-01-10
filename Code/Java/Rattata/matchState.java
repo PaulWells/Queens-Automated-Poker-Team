@@ -23,6 +23,7 @@ public class matchState {
 	private int betAmount = 10;	//the fixed raise amount
 	private int[] oppRaiseArray = new int[4];  //holds the number of raises from each round
 	private boolean checkRaise;
+	private char opponentDecision;
 	
 	public int getRoundNum(){
 		return roundNum;
@@ -94,6 +95,13 @@ public class matchState {
 			
 			int startbetstring = betString.substring(0,endbetstring).lastIndexOf("/")+1;
 			roundstring = betString.substring(startbetstring,endbetstring);
+		}
+		
+		if(roundstring.length() == 0){
+			opponentDecision = 'n';
+		}
+		else {
+			opponentDecision = roundstring.charAt(roundstring.length());
 		}
 		
 		if(preflop){
