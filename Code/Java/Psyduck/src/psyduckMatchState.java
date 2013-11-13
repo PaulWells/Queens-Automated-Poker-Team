@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 /* the matchState object hold information about the current state of the round.  It gathers information from the betString and then
@@ -5,14 +6,18 @@ import java.util.*;
  * Raise to call ratio is returned as a negative 1 if the opponent has made no raises or calls yet
  */
 
-public class matchState {
+public class psyduckMatchState {
+	
 	private String handString;
+	private int[] rcTally = new int [4]; //keeps track of all calls and raises 0=opr, 1=opc, 2=ourr, 3=ourc
 	private boolean ourTurn;
 	private boolean endHand;
+	private String cardString;
+	private int actionNumber; //number of actions completed in the current round
 	private int roundNum;
 	private int position;
 	private String betString;
-	private int hand[];
+	private int[] hand = new int[7];
 	private float handStrength;
 	private int ihandRank;	//hand rank as an integer (the way it comes out of the hand rank function)
 	private float fhandRank;	//hand rank converted to a float between 0 and 1
@@ -29,9 +34,59 @@ public class matchState {
 	/*public char getOpponentLastDecision(){
 		return opponentLastDecision;
 	}*/
+	
+	
+	private int convertCard(String card)
+	{
+		//System.out.println(card);
+		char suit = card.charAt(1);
+		char rank = card.charAt(0);
+		
+		int rankNum;
+		int suitNum;
+		
+		if((int)rank >= 48 && (int)rank <= 57){
+			rankNum = (int)rank - 48;
+		}
+		else if(rank == 'T'){
+			rankNum = 10;
+		}
+		else if(rank == 'J'){
+			rankNum = 11;
+		}
+		else if(rank == 'Q'){
+			rankNum = 12;
+		}
+		else if(rank == 'K'){
+			rankNum = 13;
+		}
+		else{
+			rankNum = 14;
+		}
+		
+		if(suit == 's'){
+			suitNum = 0;
+		}
+		else if(suit == 'h'){
+			suitNum = 1;
+		}
+		else if(suit == 'c'){
+			suitNum = 2;
+		}
+		else{
+			suitNum = 3;
+		}
+		//System.out.println(suitNum);
+		
+		return ((rankNum - 2) * 4) + suitNum +1;
+	}
 
 	public int[] getOppRaiseArray(){
 		return oppRaiseArray.clone();
+	}
+
+	public int getActionNumber(){
+		return actionNumber;
 	}
 
 	public int getRoundNum(){
@@ -61,13 +116,60 @@ public class matchState {
 	public boolean getOurTurn(){
 		return ourTurn;
 	}
+	
+	public String getHand(){
+
+		return handString;
+	}
+	
+	public int[] getIntCard(){
+		setIntCard();
+		return hand;		
+	}
+	
+	public int getStage(){
+		
+		if (cardString.length() == 4)
+		{
+			return 0; //preflop
+		}
+		else if (cardString.length() == 10)
+		{
+			return 1; //postflop
+		}
+		else if (cardString.length() == 12)
+		{
+			return 2; //turn
+		}
+		else
+		{
+			return 3; //river
+		}
+	}
+	public int[] getRCTally(){
+		
+		return rcTally;
+	}
 
 	private void setbetString(String newString){
 		betString = newString;
 		return;
 	}
 
-
+	private void setIntCard()
+	{
+			System.out.println(handString.length()/2);
+			System.out.println(handString);
+			
+		for(int i=0; i < handString.length()/2; i++)
+		{
+			//System.out.println(handString.substring(i*2,(i*2)+2));
+			//System.out.println("test");
+			hand[i] = convertCard(handString.substring(i*2, (i*2)+2));
+		}
+		
+		return;
+	}
 
 	//removes "MATCHSTATE:" label at beginning of betString
 	private void prepareString(){
@@ -77,7 +179,54 @@ public class matchState {
 	}
 
 	private void setHand(){
-		handString = betString.substring(betString.indexOf("|")+1,betString.indexOf("|")+5);	
+		handString = betString.substring(betString.indexOf("|")+1,betString.indexOf("|")+5);
+		if(handString.length() < 0)
+		{
+			handString = betString.substring(betString.indexOf("|")-4,betString.indexOf("|")-1);
+		}
+		
+	}
+	
+	private void setCards(){
+		//"MATCHSTATE:0:0:cc/rcr:|9hQd/8dAs8s"
+		cardString = betString.substring(betString.indexOf("|")+1, betString.length());
+		cardString = cardString.replace("/", "");		
+		if (cardString.length() < 1)
+		{
+			cardString = betString.substring(betString.indexOf("|")-4, betString.indexOf("|"));
+			cardString = cardString.replace("/", "");
+		}
+	}
+	
+	private void setActionNumber(){
+		int stage = getStage();
+		System.out.println(betString);
+		String test2 = betString.substring(betString.indexOf(":")+3, betString.length());
+		boolean done = false;
+		int count = 0;
+		if (test2.charAt(0) == ':')
+		{
+			actionNumber = 0;
+			return;
+		}
+		for (int i = 0; i < stage; i++)
+		{
+			test2 = betString.substring(betString.indexOf("/"), betString.length());
+		}
+		while(!done)
+		{
+			if(test2.charAt(count) == '/' || test2.charAt(count) == ':')
+			{
+				done = true;
+			}
+			else
+			{
+				count++;
+			}
+		}
+		
+		actionNumber = (count)/2 + position;
+		
 	}
 
 	private void setOurTurn(){
@@ -155,7 +304,7 @@ public class matchState {
 	//also sets opponent's position which is the opposite of our position
 	private void setPosition(){
 		position = Integer.parseInt(betString.substring(0,1));
-		betString = betString.substring(2,betString.length());
+		//betString = betString.substring(2,betString.length());
 
 		if(position ==1)
 			opponentPosition = 0;
@@ -246,7 +395,8 @@ public class matchState {
 		countArray[1] = oppcountc;
 		countArray[2] = ourcountr;
 		countArray[3] = ourcountc;
-
+		
+		rcTally = countArray;
 		return countArray;
 	}
 
@@ -409,26 +559,49 @@ public class matchState {
 
 		setbetString(newstring);
 		System.out.println(betString);
+
 		prepareString();
-		setOurTurn();
-		setHand();
+		System.out.println(betString);
+	
 		setPosition();
 		System.out.println("position: " + position);
+		
+		setCards();
+		System.out.println("Cards: " + cardString);
+
+		setOurTurn();
+		System.out.println("Our Turn?:" + ourTurn);
+		
+		setHand();
+		System.out.println("Hand String: " + handString);
+		
+		setActionNumber();
+		System.out.println("Action NUmber: " + actionNumber);
+		
 		setHandNum();
 		System.out.println("handNum: " + handNum);
+		
 		setBetLog();
 		System.out.println("betLog: " + betLog);
+		
 		setRoundNum();
 		System.out.println("roundNum: " + roundNum);
+		
 		setRaiseCallData();
 		System.out.println("raise to call ratio: " + rcRatio);
+		
 		for(int i = 1;i<=4;i++)
 			System.out.println("Number of Opponent Raises in Round: " + i + " "+ oppRaiseArray[i-1]);
+		
 		setPotOddsAndCheckRaise();
+		
 		System.out.println("pot odds: " + potOdds);
 		System.out.println("checkRaise: " + checkRaise);
-		System.out.println("Our Turn?:" + ourTurn);
-		System.out.println("Hand String: " + handString);
+		
+		
+		
+
+
 
 	}
 
@@ -439,11 +612,14 @@ public class matchState {
 
 
 	public static void main (String[] args) { 
-		String sample = "MATCHSTATE:0:0:cc/rcr:|9hQd/8dAs8s";
+		//String sample = "MATCHSTATE:0:0:cc/rcr:|9hQd/8dAs8s";
+		String sample = "MATCHSTATE:0:1:rrc/r:|9hQd/8dAs8s";
+			psyduckMatchState test = new psyduckMatchState();
+			test.updateState(sample);
 
-		matchState test = new matchState();
-		test.updateState(sample);
+		}
 
-	}
+	
+
 
 }

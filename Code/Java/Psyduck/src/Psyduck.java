@@ -1,20 +1,33 @@
 public class Psyduck 
 {
+	public static void main(String args[])
+	{
+		System.out.println(decision("MATCHSTATE:0:1:rrc/r:|9hQd/8dAs8s"));
+	}
 	
 	public static char decision (String input)
 	{
-		char decision;
+		char decision = 'c';
 		
-		matchState parser = new matchState();
+		psyduckMatchState parser = new psyduckMatchState();
 		parser.updateState(input);
 		
+		int [] rcTally = parser.getRCTally();
+		System.out.println("test1");
 		//necessary variables for determining decision
-		String hand;
-		int actionNumber;
-		int[] cards;
-		int potSize;
-		int stage;
-		char oppDecision = 'c';
+		String hand = parser.getHand();
+		System.out.println("test2");
+		int actionNumber = parser.getActionNumber(); //number of actions completed by us in the current betting round
+		System.out.println("test3");
+		int[] cards = new int[7];
+		System.out.println("test4");
+		cards = parser.getIntCard(); //int array of cards (ours + table)
+		System.out.println("test5");
+		int potSize = rcTally[0] + rcTally[2];  //self explanatory 
+		System.out.println("test6");
+		int stage = parser.getStage(); //preflop = 0; postflop = 1; turn = 2; river = 3;
+		System.out.println("test7");
+		char oppDecision = 'c'; //opponent's most recent decision
 		
 		//variables used for opponent modeling
 		double aggressive = 0.5; //dynamic (prob of playing aggressive)

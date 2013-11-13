@@ -11,7 +11,7 @@ public class TCP_LOOP {
 	
 		public static void main(String args[]) throws IOException,SocketException{
 
-			 int PORT = 16177;
+			 int PORT = 48777;
 			 PrintWriter outStream = null;
 			 BufferedReader inStream = null;
 			 Socket socket = null;
@@ -33,10 +33,10 @@ public class TCP_LOOP {
 			outStream.flush();
 			
 			System.out.println("Connected");
-			matchState test = new matchState();
+			psyduckMatchState test = new psyduckMatchState();
 		
 			while((input = inStream.readLine()) != null){	
-				String out = input +  ":" + tentacool.decision(input);
+				String out = input +  ":" + Psyduck.decision(input);
 				System.out.println(input);
 				if (out == null){
 					continue;

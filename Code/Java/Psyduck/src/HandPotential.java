@@ -2,14 +2,10 @@
 import java.io.*;
 import java.util.*;
 
-
-
-
 public class HandPotential	{
 	
 	public static float getHandStrength(int[] cards)
 	{
-		
 		float blank = EffectiveHandStrength(cards);
 		
 		return Global.a;
